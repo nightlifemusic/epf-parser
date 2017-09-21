@@ -57,10 +57,7 @@ module.exports = (cb) => {
             cb(meta, rows);
             metaEmitted = true;
           }
-
-          const row = split(line, rowDelim);
-          row.raw = line;
-          rows.push(row);
+          rows.end();
           done();
         }
       }
