@@ -12,7 +12,7 @@ tables.map((table) => {
   .pipe(parse((meta) => {
     //console.log('meta for '+ table, meta);
     let cols_sql = meta.columns.map(meta => `${meta.name} ${meta.type}`).join(', ')
-    let sql = `CREATE TABLE  ${table} (${cols_sql})`
+    let sql = `CREATE TABLE ${table} (${cols_sql});`
     console.log(sql);
   }));
 })
