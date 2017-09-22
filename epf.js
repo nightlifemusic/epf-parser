@@ -12,26 +12,40 @@ const dbTypes = Buffer('dbTypes');
 const primaryKey = Buffer('primaryKey');
 const rowDelim = Buffer('\x01');
 
+// class WriteHeader extends Writable {
+//     write(line, encoding, cb) {
+//         console.log(line.toString());
+//         if(line[0] != '#'.charCodeAt(0))
+//             this.end();
+//         cb();
+//     }
+// }
+
 class Epf {
     constructor(log) {
         this.log = log
     }
 
     metaStream() {
-        return new Writable({
-            write: (line, encoding, cb) => {
-                console.log(line.toString());
-                cb();
-            }
-        })
+        return multipipe( // TODO : find why piping from binarySplit into the writeable without using multipipe doesn't work
+            binarySplit('\x02\n', { // read a line at a time. 
+                maxLength: bytes('1mb')
+            }), new Writable({
+                write: (line, encoding, cb) => {
+                    console.log(line.toString());
+                    cb();
+                }
+            })
+        )
+
         //return stream;
-            // binarySplit('\x02\n', { // read a line at a time. 
-            //     maxLength: bytes('1mb')
-            // }).pipe(
-                
-           // )
-            
-        
+        // binarySplit('\x02\n', { // read a line at a time. 
+        //     maxLength: bytes('1mb')
+        // }).pipe(
+
+        // )
+
+
     }
 }
 
