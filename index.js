@@ -12,6 +12,20 @@ const dbTypes = Buffer('dbTypes');
 const primaryKey = Buffer('primaryKey');
 const rowDelim = Buffer('\x01');
 
+class Epf {
+  constructor(log) {
+    this.log = log
+  }
+
+  metaStream() {
+    
+  }
+
+
+
+}
+
+
 module.exports = (cb) => {
   let meta = { columns: [], primaryKey: [] };
   let metaEmitted = false;
