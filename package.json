@@ -8,7 +8,8 @@
     "binary-split": "juliangruber/binary-split#fix/lookbehind",
     "buffer-split": "^1.0.0",
     "bytes": "^2.3.0",
-    "multipipe": "^0.3.0"
+    "multipipe": "^0.3.0",
+    "mysql": "^2.14.1"
   },
   "devDependencies": {
     "chai": "^4.1.2",
