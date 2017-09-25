@@ -3,7 +3,7 @@
 const fs = require('fs');
 const parse = require('.');
 
-let category_dir = '../match20170913';
+let category_dir = '../itunes/match20170913';
 
 let tables = fs.readdirSync(category_dir);
 
