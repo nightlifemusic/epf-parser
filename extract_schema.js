@@ -11,14 +11,14 @@ let create_sql = [];
 let alter_sql = [];
 
 tables.map((table) => {
-  fs.createReadStreamSync(category_dir + '/' + table)
+  fs.createReadStream(category_dir + '/' + table)
   .pipe(parse((meta) => {
     console.log('meta for '+ table, meta);
     let cols_sql = meta.columns.map(meta => `${meta.name} ${meta.type}`).join(', ')
     create_sql.push(`CREATE TABLE ${table} (${cols_sql});`)
     alter_sql.push(`ALTER TABLE ${table} ADD PRIMARY KEY (${meta.primaryKey.join(', ')});`)
     
-  }));
+  })).on('finish', (err, res) => {console.log(create_sql.join('\n')); console.log(alter_sql.join('\n'))});
 })
 
 console.log("create sql ", create_sql)
